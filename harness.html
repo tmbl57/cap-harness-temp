@@ -29,8 +29,8 @@ function postResult() {
   if (posted || !finalResult) return;
   posted = true;
   document.getElementById('post').textContent = 'POST: sending...';
-  fetch(WH, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(finalResult)})
-    .then(function(res) { document.getElementById('post').textContent = 'POST: ' + res.status + ' OK'; })
+  fetch(WH, {method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain'}, body: JSON.stringify(finalResult)})
+    .then(function(res) { document.getElementById('post').textContent = 'POST: sent (no-cors)'; })
     .catch(function(err) { document.getElementById('post').textContent = 'POST: FAILED ' + err; });
 }
 function finish() { if (done) return; done = true; render(); postResult(); document.title = 'DONE'; }
